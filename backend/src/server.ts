@@ -17,17 +17,19 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+const MONGO_URI='mongodb+srv://arfaouimohamedaziz5:ee9nL5LNwYjKANfn@memes.aubxtws.mongodb.net/';
+
 
 // Connexion à MongoDB
 mongoose
-  .connect(process.env.MONGO_URI as string)
+  .connect(MONGO_URI)
   .then(() => {
     console.log("✅ MongoDB connecté !");
-    app.listen(process.env.PORT, () => {
-      console.log(`🚀 Serveur lancé sur http://localhost:${process.env.PORT}`);
+    app.listen(PORT, () => {
+      console.log(`🚀 Serveur démarré sur le port ${PORT}`);
     });
   })
-  .catch((err) => {
+  .catch((err:any) => {
     console.error("❌ Échec connexion MongoDB :", err);
   });
 
@@ -38,3 +40,4 @@ app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 
 
+const PORT =  5000; 
