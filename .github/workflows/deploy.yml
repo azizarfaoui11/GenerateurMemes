@@ -1,4 +1,4 @@
- name: CI/CD to EC2
+name: CI/CD to EC2
 
 on:
   push:
@@ -9,59 +9,59 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v2
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ secrets.AWS_REGION }}
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
 
-    - name: Login to ECR
-      run: |
-        aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+      - name: Login to ECR
+        run: |
+          aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
 
-    - name: Build and Push backend image
-      run: |
-        docker build -t ${{ secrets.ECR_BACKEND_URI }} ./backend
-        docker push ${{ secrets.ECR_BACKEND_URI }}
+      - name: Build and Push backend image
+        run: |
+          docker build -t ${{ secrets.ECR_BACKEND_URI }} ./backend
+          docker push ${{ secrets.ECR_BACKEND_URI }}
 
-    - name: Build and Push frontend image
-      run: |
-        docker build -t ${{ secrets.ECR_FRONTEND_URI }} ./frontend
-        docker push ${{ secrets.ECR_FRONTEND_URI }}
+      - name: Build and Push frontend image
+        run: |
+          docker build -t ${{ secrets.ECR_FRONTEND_URI }} ./frontend
+          docker push ${{ secrets.ECR_FRONTEND_URI }}
 
-    - name: Copy docker-compose.yml to EC2
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.EC2_HOST }}
-        username: ubuntu
-        key: ${{ secrets.EC2_SSH_KEY }}
-        source: "docker-compose.yml"
-        target: "~/app"
+      - name: Copy docker-compose.yml to EC2
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: "docker-compose.yml"
+          target: "~/app"
 
-    - name: Create .env.prod on EC2
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.EC2_HOST }}
-        username: ubuntu
-        key: ${{ secrets.EC2_SSH_KEY }}
-        script: |
-          mkdir -p ~/app
-          echo "PORT=5000" > ~/app/.env.prod
-          echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> ~/app/.env.prod
-          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> ~/app/.env.prod
-          chmod 600 ~/app/.env.prod
+      - name: Create .env.prod on EC2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            mkdir -p ~/app
+            echo "PORT=5000" > ~/app/.env.prod
+            echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> ~/app/.env.prod
+            echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> ~/app/.env.prod
+            chmod 600 ~/app/.env.prod
 
-    - name: Deploy on EC2
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.EC2_HOST }}
-        username: ubuntu
-        key: ${{ secrets.EC2_SSH_KEY }}
-        script: |
-          cd ~/app
-          docker-compose pull
-          docker-compose up -d --remove-orphans
+      - name: Deploy on EC2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd ~/app
+            docker-compose pull
+            docker-compose up -d --remove-orphans
