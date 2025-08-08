@@ -5,3 +5,4 @@ deploy3.0
 deploy5.0
 deploy6.0
 deploy7.0
+deploy8.0
