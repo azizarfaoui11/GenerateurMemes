@@ -49,7 +49,7 @@ export default function Generator() {
 
   useEffect(() => {
     if (editingMeme) {
-      setImage(`http://localhost:5000/uploads/${editingMeme.imageorigin}`);
+      setImage(`http://13.60.245.143:5000/uploads/${editingMeme.imageorigin}`);
       setTopText(editingMeme.topText || "");
       setMeduimText(editingMeme.meduimText || "");
       setBottomText(editingMeme.bottomText || "");
