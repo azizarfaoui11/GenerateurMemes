@@ -14,7 +14,10 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: 'http://13.60.245.143', 
+  credentials: true
+}));
 app.use(express.json());
 
 const MONGO_URI='mongodb+srv://arfaouimohamedaziz5:ee9nL5LNwYjKANfn@memes.aubxtws.mongodb.net/';
