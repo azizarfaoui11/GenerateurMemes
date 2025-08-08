@@ -9,3 +9,4 @@ deploy8.0
 deploy9.0
 deploy10.0
 deploy11.0
+deploy12.0

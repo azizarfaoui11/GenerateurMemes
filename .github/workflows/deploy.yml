@@ -52,10 +52,10 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             mkdir -p ~/app
-            echo "PORT=5000" > ~/app/.env.prod
-            echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> ~/app/.env.prod
-            echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> ~/app/.env.prod
-            chmod 600 ~/app/.env.prod
+            echo "PORT=5000" > ~/app/.env
+            echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> ~/app/.env
+            echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> ~/app/.env
+            chmod 600 ~/app/.env
 
       - name: Deploy on EC2
         uses: appleboy/ssh-action@master
