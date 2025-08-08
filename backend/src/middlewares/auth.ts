@@ -6,7 +6,7 @@ export interface AuthRequest extends Request {
   user?: { userId: string; role: string };
 }
 
-const JWT_SECRET = process.env.JWT_SECRET || '';
+const JWT_SECRET = process.env.JWT_SECRET ;
 
 export const auth = (req: AuthRequest, res: Response, next: NextFunction): void => {
   try {

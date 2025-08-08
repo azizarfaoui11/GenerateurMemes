@@ -14,25 +14,20 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors({
-  origin: 'http://13.60.245.143', 
-  credentials: true
-}));
+app.use(cors());
 app.use(express.json());
-
-const MONGO_URI='mongodb+srv://arfaouimohamedaziz5:ee9nL5LNwYjKANfn@memes.aubxtws.mongodb.net/';
 
 
 // Connexion à MongoDB
 mongoose
-  .connect(MONGO_URI)
+  .connect(process.env.MONGO_URI as string)
   .then(() => {
     console.log("✅ MongoDB connecté !");
-    app.listen(PORT, () => {
-      console.log(`🚀 Serveur démarré sur le port ${PORT}`);
+    app.listen(process.env.PORT, () => {
+      console.log(`🚀 Serveur lancé sur http://GenMemes:${process.env.PORT}`);
     });
   })
-  .catch((err:any) => {
+  .catch((err) => {
     console.error("❌ Échec connexion MongoDB :", err);
   });
 
@@ -43,4 +38,3 @@ app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 
 
-const PORT =  5000; 
