@@ -132,7 +132,7 @@ export default function Gallery() {
     {/* Image */}
     <div className="aspect-square bg-gray-100 rounded-t-lg overflow-hidden">
       <img
-        src={`http://localhost:5000/uploads/${meme.image}`}
+        src={`http://13.60.245.143:5000/uploads/${meme.image}`}
         alt="Meme"
         className="w-full h-full object-cover"
       />

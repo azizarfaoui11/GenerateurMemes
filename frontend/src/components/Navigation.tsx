@@ -107,7 +107,7 @@ useEffect(() => {
                 <img
                   src={
                     profile?.avatar
-                      ? `http://localhost:5000/uploads/${profile.avatar}`
+                      ? `http://13.60.245.143:5000/uploads/${profile.avatar}`
                       : "https://placehold.co/96x96?text=User"
                   }
                   alt="Avatar utilisateur"
