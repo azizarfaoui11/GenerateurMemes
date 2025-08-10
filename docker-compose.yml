@@ -1,13 +1,12 @@
-version: '3.9'
-
 services:
   backend:
     image: 197304876963.dkr.ecr.eu-north-1.amazonaws.com/genmemes/backend:latest
     ports:
       - "5000:5000"
     env_file:
-      - .env     
-
+      - .env
+    volumes:
+      - /home/ubuntu/app/uploads:/app/uploads
   frontend:
     image: 197304876963.dkr.ecr.eu-north-1.amazonaws.com/genmemes/frontend:latest
     ports:
