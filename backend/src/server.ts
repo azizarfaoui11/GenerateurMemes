@@ -34,7 +34,8 @@ mongoose
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/memes',memeRoutes);
-app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+app.use('/uploads', express.static('/home/ubuntu/app/uploads'));
+//app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 
 
