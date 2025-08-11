@@ -75,7 +75,7 @@ export default function Gallery() {
 
 
  const handleDownload = async (filename: string) => {
-  const url = `http://13.60.245.143:5000/uploads/${filename}`;
+  const url = `https://genmemes.duckdns.org/uploads/${filename}`;
   try {
     const response = await fetch(url);
     const blob = await response.blob();
