@@ -65,5 +65,5 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd ~/app
-            docker-compose pull
-            docker-compose up -d --remove-orphans
+            docker-compose pull --no-cache
+            docker-compose up -d --force-recreate
