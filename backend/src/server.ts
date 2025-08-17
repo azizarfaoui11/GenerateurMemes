@@ -39,4 +39,3 @@ app.use('/uploads', express.static('/app/uploads'));
 //app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 
-
