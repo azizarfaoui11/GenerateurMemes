@@ -107,7 +107,7 @@ useEffect(() => {
                 <img
                   src={
                     profile?.avatar
-                      ? `https://genmemes.duckdns.org/uploads/${profile.avatar}`
+                      ? `https://genmemes.azizarfaoui.ip-ddns.com/uploads/${profile.avatar}`
                       : "https://placehold.co/96x96?text=User"
                   }
                   alt="Avatar utilisateur"

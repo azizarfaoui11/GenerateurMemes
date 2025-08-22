@@ -49,7 +49,7 @@ export default function Generator() {
 
   useEffect(() => {
     if (editingMeme) {
-      setImage(`https://genmemes.duckdns.org/uploads/${editingMeme.imageorigin}`);
+      setImage(`https://genmemes.azizarfaoui.ip-ddns.com/uploads/${editingMeme.imageorigin}`);
       setTopText(editingMeme.topText || "");
       setMeduimText(editingMeme.meduimText || "");
       setBottomText(editingMeme.bottomText || "");
