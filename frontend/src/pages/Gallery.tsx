@@ -132,7 +132,7 @@ export default function Gallery() {
     {/* Image */}
     <div className="aspect-square bg-gray-100 rounded-t-lg overflow-hidden">
       <img
-        src={`https://genmemes.duckdns.org/uploads/${meme.image}`}
+        src={`https://genmemes.azizarfaoui.ip-ddns.com/uploads/${meme.image}`}
         alt="Meme"
         className="w-full h-full object-cover"
       />

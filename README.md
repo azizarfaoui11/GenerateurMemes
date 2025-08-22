@@ -1,19 +1,5 @@
 # GenerateurMemes
-config-EC2-Host
-deploy2.0
-deploy3.0
-deploy5.0
-deploy6.0
-deploy7.0
-deploy8.0
-deploy9.0
-deploy10.0
-deploy11.0
-deploy12.0
-deploy13.0
-deploy14.0
-deploy15.0
-deploy16.0
-deploy17.0
-deploy18.0 
-deploy19.0 
+GenMemes est un générateur de memes simple et amusant qui permet de créer, personnaliser et partager des memes en quelques clics. Partagez vos créations avec vos amis ou publiez-les pour que tout le monde puisse en profiter !
+
+Déployée sur AWS EC2, l’app est rapide, fiable et accessible en ligne !
+

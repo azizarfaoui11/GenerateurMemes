@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://genmemes.azizarfaoui.ip-ddns.com//api';
+const API_URL = import.meta.env.VITE_API_URL || 'https://genmemes.azizarfaoui.ip-ddns.com/api';
 
 // Configure axios with default headers
 axios.interceptors.request.use((config) => {
